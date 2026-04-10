@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { resolveUiLocale } from "../../../utils/localeUi";
 
 export const General = ({ levels }) => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
   const costoGema = 16;
@@ -24,29 +28,27 @@ export const General = ({ levels }) => {
   return (
     <div className="calc-card calc-card--general">
       <h2 className="calc-card-title calc-card-title--general">
-        Cuartel — vista general
+        {t("libros.general.title")}
       </h2>
 
       <div>
-        <p className="calc-label mb-1.5">Nivel actual del cuartel</p>
+        <p className="calc-label mb-1.5">{t("libros.general.currentLevel")}</p>
         <input
           type="number"
           onChange={(e) => setLevelActual(Number(e.target.value))}
-          placeholder="1 – 30"
+          placeholder={t("common.levelPlaceholder")}
           className={`calc-input ${invalidLevel ? "calc-input--error" : ""}`}
         />
       </div>
       {invalidLevel && (
-        <div className="calc-alert">
-          El rango permitido es del 1 al 30.
-        </div>
+        <div className="calc-alert">{t("common.levelInvalid")}</div>
       )}
 
       <div>
-        <p className="calc-label mb-1.5">Libros almacenados</p>
+        <p className="calc-label mb-1.5">{t("libros.general.stored")}</p>
         <input
           type="number"
-          placeholder="Ej. 1500"
+          placeholder={t("common.examplePlaceholder")}
           onChange={(e) => setCantidad(Number(e.target.value))}
           className="calc-input"
         />
@@ -54,21 +56,21 @@ export const General = ({ levels }) => {
 
       <div className="calc-results">
         <p className="calc-stat-row">
-          <span>Libros hasta nivel 30</span>
+          <span>{t("libros.general.to30")}</span>
           <span className="calc-stat-value">
-            {calcularRestante.toLocaleString()}
+            {calcularRestante.toLocaleString(locale)}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Siguiente nivel</span>
+          <span>{t("libros.general.nextLevel")}</span>
           <span className="calc-stat-value">
-            {LibrosRequeridos.toLocaleString()}
+            {LibrosRequeridos.toLocaleString(locale)}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Coste en gemas (16 / libro)</span>
+          <span>{t("libros.general.gemCost")}</span>
           <span className="calc-stat-value">
-            {calcularGemas.toLocaleString()}
+            {calcularGemas.toLocaleString(locale)}
           </span>
         </p>
       </div>

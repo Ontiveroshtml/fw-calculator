@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { resolveUiLocale } from "../../../utils/localeUi";
 
 export const Individual = ({ levels }) => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
   const cantidadValida = Math.max(0, cantidad);
@@ -14,33 +18,33 @@ export const Individual = ({ levels }) => {
   const calcularCostoGemas = faltante * costoGema;
 
   const invalidLevel = levelActual > 30 || levelActual < 0;
+  const levelLabel =
+    levelActual > 0 ? String(levelActual) : t("common.missingLevel");
 
   return (
     <div className="calc-card calc-card--individual">
       <h2 className="calc-card-title calc-card-title--individual">
-        Cuartel — por nivel
+        {t("libros.individual.title")}
       </h2>
 
       <div>
-        <p className="calc-label mb-1.5">Nivel objetivo</p>
+        <p className="calc-label mb-1.5">{t("libros.individual.targetLevel")}</p>
         <input
           type="number"
           onChange={(e) => setLevelActual(Number(e.target.value))}
-          placeholder="1 – 30"
+          placeholder={t("common.levelPlaceholder")}
           className={`calc-input ${invalidLevel ? "calc-input--error" : ""}`}
         />
       </div>
       {invalidLevel && (
-        <div className="calc-alert">
-          El rango permitido es del 1 al 30.
-        </div>
+        <div className="calc-alert">{t("common.levelInvalid")}</div>
       )}
 
       <div>
-        <p className="calc-label mb-1.5">Libros almacenados</p>
+        <p className="calc-label mb-1.5">{t("libros.individual.stored")}</p>
         <input
           type="number"
-          placeholder="Ej. 1500"
+          placeholder={t("common.examplePlaceholder")}
           onChange={(e) => setCantidad(Number(e.target.value))}
           className="calc-input"
         />
@@ -48,19 +52,21 @@ export const Individual = ({ levels }) => {
 
       <div className="calc-results">
         <p className="calc-stat-row">
-          <span>Libros para nivel {levelActual || "—"}</span>
+          <span>{t("libros.individual.forLevel", { level: levelLabel })}</span>
           <span className="calc-stat-value">
-            {librosRequeridos.toLocaleString()}
+            {librosRequeridos.toLocaleString(locale)}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Faltantes</span>
-          <span className="calc-stat-value">{faltante.toLocaleString()}</span>
+          <span>{t("libros.individual.shortage")}</span>
+          <span className="calc-stat-value">
+            {faltante.toLocaleString(locale)}
+          </span>
         </p>
         <p className="calc-stat-row">
-          <span>Coste en gemas (16 / libro)</span>
+          <span>{t("libros.individual.gemCost")}</span>
           <span className="calc-stat-value">
-            {calcularCostoGemas.toLocaleString()}
+            {calcularCostoGemas.toLocaleString(locale)}
           </span>
         </p>
       </div>

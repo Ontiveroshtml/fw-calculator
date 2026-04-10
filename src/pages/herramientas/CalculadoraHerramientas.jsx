@@ -1,9 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { CalculatorHelpNote } from "../../components/CalculatorHelpNote";
 import herramientasImg from "../../assets/herramientas.webp";
 import { Individual } from "./individual/Individual";
 import { General } from "./general/General";
+import { resolveUiLocale } from "../../utils/localeUi";
 
 export const CalculadoraHerramientas = () => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
+
   const herramientas = [
     { level: 1, value: 0 },
     { level: 2, value: 5 },
@@ -49,9 +54,11 @@ export const CalculadoraHerramientas = () => {
           className="h-auto w-28 drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] md:w-44"
         />
         <div className="stat-pill w-full max-w-sm text-center md:text-left">
-          <p className="stat-pill-label">Total acumulado (nivel 1 → 30)</p>
-          <p className="stat-pill-value">{total.toLocaleString()}</p>
-          <p className="stat-pill-unit">herramientas</p>
+          <p className="stat-pill-label">
+            {t("pages.herramientas.totalLabel")}
+          </p>
+          <p className="stat-pill-value">{total.toLocaleString(locale)}</p>
+          <p className="stat-pill-unit">{t("pages.herramientas.totalUnit")}</p>
         </div>
       </div>
 

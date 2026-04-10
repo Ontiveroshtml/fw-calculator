@@ -1,9 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { CalculatorHelpNote } from "../../components/CalculatorHelpNote";
 import insignia from "../../assets/insignia.webp";
 import { Individual } from "./individual/Individual";
 import { General } from "./general/General";
+import { resolveUiLocale } from "../../utils/localeUi";
 
 export const CalculadoraInsignia = () => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
+
   const insignias = [
     { level: 1, value: 0 },
     { level: 2, value: 5 },
@@ -49,9 +54,9 @@ export const CalculadoraInsignia = () => {
           className="h-auto w-28 drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] md:w-36"
         />
         <div className="stat-pill w-full max-w-sm text-center md:text-left">
-          <p className="stat-pill-label">Total acumulado (nivel 1 → 30)</p>
-          <p className="stat-pill-value">{total.toLocaleString()}</p>
-          <p className="stat-pill-unit">insignias</p>
+          <p className="stat-pill-label">{t("pages.insignias.totalLabel")}</p>
+          <p className="stat-pill-value">{total.toLocaleString(locale)}</p>
+          <p className="stat-pill-unit">{t("pages.insignias.totalUnit")}</p>
         </div>
       </div>
 

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { resolveUiLocale } from "../../../utils/localeUi";
 
 export const General = ({ herramientas }) => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
   const costoGema = 10;
@@ -24,29 +28,29 @@ export const General = ({ herramientas }) => {
   return (
     <div className="calc-card calc-card--general">
       <h2 className="calc-card-title calc-card-title--general">
-        Herramientas — vista general
+        {t("herramientas.general.title")}
       </h2>
 
       <div>
-        <p className="calc-label mb-1.5">Nivel actual</p>
+        <p className="calc-label mb-1.5">
+          {t("herramientas.general.currentLevel")}
+        </p>
         <input
           type="number"
           onChange={(e) => setLevelActual(Number(e.target.value))}
-          placeholder="1 – 30"
+          placeholder={t("common.levelPlaceholder")}
           className={`calc-input ${invalidLevel ? "calc-input--error" : ""}`}
         />
       </div>
       {invalidLevel && (
-        <div className="calc-alert">
-          El rango permitido es del 1 al 30.
-        </div>
+        <div className="calc-alert">{t("common.levelInvalid")}</div>
       )}
 
       <div>
-        <p className="calc-label mb-1.5">Herramientas almacenadas</p>
+        <p className="calc-label mb-1.5">{t("herramientas.general.stored")}</p>
         <input
           type="number"
-          placeholder="Ej. 1500"
+          placeholder={t("common.examplePlaceholder")}
           onChange={(e) => setCantidad(Number(e.target.value))}
           className="calc-input"
         />
@@ -54,21 +58,25 @@ export const General = ({ herramientas }) => {
 
       <div className="calc-results">
         <p className="calc-stat-row">
-          <span>Hasta nivel 30</span>
+          <span>{t("herramientas.general.to30")}</span>
           <span className="calc-stat-value">
-            {(calcularRestante < 0 ? 0 : calcularRestante).toLocaleString()}
+            {(calcularRestante < 0 ? 0 : calcularRestante).toLocaleString(
+              locale,
+            )}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Siguiente nivel</span>
+          <span>{t("herramientas.general.nextLevel")}</span>
           <span className="calc-stat-value">
-            {(herramientasRequeridas < 0 ? 0 : herramientasRequeridas).toLocaleString()}
+            {(
+              herramientasRequeridas < 0 ? 0 : herramientasRequeridas
+            ).toLocaleString(locale)}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Coste en gemas (10 / unidad)</span>
+          <span>{t("herramientas.general.gemCost")}</span>
           <span className="calc-stat-value">
-            {(calcularGemas < 0 ? 0 : calcularGemas).toLocaleString()}
+            {(calcularGemas < 0 ? 0 : calcularGemas).toLocaleString(locale)}
           </span>
         </p>
       </div>

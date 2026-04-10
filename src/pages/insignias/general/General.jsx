@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { resolveUiLocale } from "../../../utils/localeUi";
 
 export const General = ({ insignias }) => {
+  const { t, i18n } = useTranslation();
+  const locale = resolveUiLocale(i18n.language);
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
   const costoGema = 10;
@@ -24,29 +28,27 @@ export const General = ({ insignias }) => {
   return (
     <div className="calc-card calc-card--general">
       <h2 className="calc-card-title calc-card-title--general">
-        Insignias — vista general
+        {t("insignias.general.title")}
       </h2>
 
       <div>
-        <p className="calc-label mb-1.5">Nivel actual</p>
+        <p className="calc-label mb-1.5">{t("insignias.general.currentLevel")}</p>
         <input
           type="number"
           onChange={(e) => setLevelActual(Number(e.target.value))}
-          placeholder="1 – 30"
+          placeholder={t("common.levelPlaceholder")}
           className={`calc-input ${invalidLevel ? "calc-input--error" : ""}`}
         />
       </div>
       {invalidLevel && (
-        <div className="calc-alert">
-          El rango permitido es del 1 al 30.
-        </div>
+        <div className="calc-alert">{t("common.levelInvalid")}</div>
       )}
 
       <div>
-        <p className="calc-label mb-1.5">Insignias almacenadas</p>
+        <p className="calc-label mb-1.5">{t("insignias.general.stored")}</p>
         <input
           type="number"
-          placeholder="Ej. 1500"
+          placeholder={t("common.examplePlaceholder")}
           onChange={(e) => setCantidad(Number(e.target.value))}
           className="calc-input"
         />
@@ -54,21 +56,25 @@ export const General = ({ insignias }) => {
 
       <div className="calc-results">
         <p className="calc-stat-row">
-          <span>Hasta nivel 30</span>
+          <span>{t("insignias.general.to30")}</span>
           <span className="calc-stat-value">
-            {(calcularRestante < 0 ? 0 : calcularRestante).toLocaleString()}
+            {(calcularRestante < 0 ? 0 : calcularRestante).toLocaleString(
+              locale,
+            )}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Siguiente nivel</span>
+          <span>{t("insignias.general.nextLevel")}</span>
           <span className="calc-stat-value">
-            {(insigniasRequeridas < 0 ? 0 : insigniasRequeridas).toLocaleString()}
+            {(insigniasRequeridas < 0 ? 0 : insigniasRequeridas).toLocaleString(
+              locale,
+            )}
           </span>
         </p>
         <p className="calc-stat-row">
-          <span>Coste en gemas (10 / unidad)</span>
+          <span>{t("insignias.general.gemCost")}</span>
           <span className="calc-stat-value">
-            {(calcularGemas < 0 ? 0 : calcularGemas).toLocaleString()}
+            {(calcularGemas < 0 ? 0 : calcularGemas).toLocaleString(locale)}
           </span>
         </p>
       </div>

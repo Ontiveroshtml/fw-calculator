@@ -1,0 +1,121 @@
+{
+  "header": {
+    "kicker": "Calculator",
+    "titleFw": "velwiki",
+    "titleResources": "resources",
+    "beta": "BETA"
+  },
+  "subtitles": {
+    "libros": "Beast barracks: books to level 30 and gem cost.",
+    "insignias": "Badges: total materials and gems per level.",
+    "herramientas": "Toolbox: same calculations as badges.",
+    "default": "Fate War helper tools (beta)."
+  },
+  "nav": {
+    "menu": "Menu",
+    "libros": "Books",
+    "insignias": "Badges",
+    "herramientas": "Toolbox"
+  },
+  "language": {
+    "label": "Language",
+    "expandAccordion": " — press to expand or collapse",
+    "esMx": "Spanish (Mexico)",
+    "enUs": "English (United States)"
+  },
+  "meta": {
+    "title": "velwiki — resource calculator"
+  },
+  "pages": {
+    "libros": {
+      "totalLabel": "Total needed (level 1 → 30)",
+      "totalUnit": "beast books"
+    },
+    "insignias": {
+      "totalLabel": "Total needed (level 1 → 30)",
+      "totalUnit": "badges"
+    },
+    "herramientas": {
+      "totalLabel": "Total needed (level 1 → 30)",
+      "totalUnit": "toolbox"
+    }
+  },
+  "common": {
+    "levelPlaceholder": "1 – 30",
+    "examplePlaceholder": "e.g. 1500",
+    "levelInvalid": "Allowed range is level 1 to 30.",
+    "missingLevel": "—"
+  },
+  "libros": {
+    "general": {
+      "title": "Barracks — overview",
+      "currentLevel": "Current barracks level",
+      "stored": "Stored books",
+      "to30": "Books to reach level 30",
+      "nextLevel": "Next level",
+      "gemCost": "Gem cost (16 / book)"
+    },
+    "individual": {
+      "title": "Barracks — per level",
+      "targetLevel": "Target level",
+      "stored": "Stored books",
+      "forLevel": "Books for level {{level}}",
+      "shortage": "Still needed",
+      "gemCost": "Gem cost (16 / book)"
+    }
+  },
+  "insignias": {
+    "general": {
+      "title": "Badges — overview",
+      "currentLevel": "Current level",
+      "stored": "Stored badges",
+      "to30": "To reach level 30",
+      "nextLevel": "Next level",
+      "gemCost": "Gem cost (10 / badge)"
+    },
+    "individual": {
+      "title": "Badges — per level",
+      "targetLevel": "Target level",
+      "stored": "Stored badges",
+      "forLevel": "For level {{level}}",
+      "shortage": "Still needed",
+      "gemCost": "Gem cost (10 / badge)"
+    }
+  },
+  "herramientas": {
+    "general": {
+      "title": "Toolbox — overview",
+      "currentLevel": "Current level",
+      "stored": "Toolbox materials stored",
+      "to30": "To reach level 30",
+      "nextLevel": "Next level",
+      "gemCost": "Gem cost (10 / unit)"
+    },
+    "individual": {
+      "title": "Toolbox — per level",
+      "targetLevel": "Target level",
+      "stored": "Toolbox materials stored",
+      "forLevel": "For level {{level}}",
+      "shortage": "Still needed",
+      "gemCost": "Gem cost (10 / unit)"
+    }
+  },
+  "help": {
+    "title": "How it works",
+    "libros": [
+      "The total at the top is the sum of books required from level 1 through 30.",
+      "Overview: enter your current barracks level and books you already have. It shows what’s left to finish level 30, the cost for the next level, and the gem equivalent (16 gems per book).",
+      "Per level: pick the target level and stored books. It shows that level’s cost, how many you still need, and the gem equivalent."
+    ],
+    "insignias": [
+      "The total at the top is the sum of badges required from level 1 through 30.",
+      "Overview: your current level and stored badges. It shows what’s left to reach 30, the next step, and gems (10 gems per badge).",
+      "Per level: target level and stored badges. It shows that level’s cost, shortage, and gems."
+    ],
+    "herramientas": [
+      "The total at the top is the sum of toolbox materials required from level 1 through 30.",
+      "Overview: your current level and materials you’ve stored for the toolbox. It shows what’s left to reach 30, the next step, and gems (10 gems per unit).",
+      "Per level: target level and stored toolbox materials. It shows that level’s cost, shortage, and gems."
+    ]
+  }
+}

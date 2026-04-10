@@ -1,14 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const NavBar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navItems = [
-    { path: "/libros", label: "Libros" },
-    { path: "/insignias", label: "Insignias" },
-    { path: "/herramientas", label: "Herramientas" },
+    { path: "/libros", labelKey: "nav.libros" },
+    { path: "/insignias", labelKey: "nav.insignias" },
+    { path: "/herramientas", labelKey: "nav.herramientas" },
   ];
 
   const linkClass = (active) =>
@@ -25,7 +27,7 @@ export const NavBar = () => {
           className="flex w-full items-center justify-between rounded-lg border border-zinc-700 bg-zinc-900/90 px-4 py-3 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600"
           aria-expanded={isOpen}
         >
-          <span>Menú</span>
+          <span>{t("nav.menu")}</span>
           <svg
             className="h-5 w-5 text-zinc-400"
             fill="none"
@@ -60,7 +62,7 @@ export const NavBar = () => {
               to={item.path}
               className={`border-b-2 px-4 py-3 text-sm font-medium transition-colors ${linkClass(active)}`}
             >
-              {item.label}
+              {t(item.labelKey)}
             </Link>
           );
         })}
@@ -81,7 +83,7 @@ export const NavBar = () => {
                     : "text-zinc-300 hover:bg-zinc-800/80"
                 }`}
               >
-                {item.label}
+                {t(item.labelKey)}
               </Link>
             );
           })}
