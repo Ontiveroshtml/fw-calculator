@@ -1,5 +1,6 @@
 import { General } from "./general/General";
 import { Individual } from "./individual/Individual";
+import libro from "../../assets/libro.webp";
 
 export const CalculadoraBestias = () => {
   //  Niveles 1 al 30
@@ -36,11 +37,29 @@ export const CalculadoraBestias = () => {
     { level: 30, value: 3000 },
   ];
 
-  return (
-    <section className="flex flex-col gap-8 xl:flex-row">
-      <General levels={levels} />
+  const total = levels.reduce((acc, lvl) => acc + lvl.value, 0);
 
-      <Individual levels={levels} />
-    </section>
+  return (
+    <div className="flex flex-col items-center gap-10">
+      <div className="flex flex-col items-center">
+        <img
+          src={libro}
+          alt="imagen de libro"
+          className="w-30 lg:w-40 xl:w-50"
+        />
+        <p className="font-medium -mt-2 lg:-mt-9 text-lg">
+          Total:{" "}
+          <span className="text-cyan-400 font-black">
+            {total.toLocaleString()}{" "}
+          </span>
+          libros
+        </p>
+      </div>
+
+      <div className="flex flex-col xl:flex-row gap-8 justify-center items-center">
+        <General levels={levels} />
+        <Individual levels={levels} />
+      </div>
+    </div>
   );
 };

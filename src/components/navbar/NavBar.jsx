@@ -13,7 +13,7 @@ export const NavBar = () => {
 
   return (
     <nav className="relative">
-      {/* Hamburger button for mobile */}
+      {/* Hamburger button */}
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}

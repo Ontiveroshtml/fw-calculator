@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CalculadoraBestias } from "./pages/libros/CalculadoraBestias";
 import { NavBar } from "./components/navbar/NavBar";
 
@@ -11,6 +11,8 @@ function App() {
         </h1>
         <NavBar />
         <Routes>
+          <Route path="/" element={<Navigate to="/libros" replace />} />
+
           <Route path="/libros" element={<CalculadoraBestias />} />
         </Routes>
       </BrowserRouter>

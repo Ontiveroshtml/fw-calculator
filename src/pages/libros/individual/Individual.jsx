@@ -3,33 +3,22 @@ import { useState } from "react";
 export const Individual = ({ levels }) => {
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
+  const cantidadValida = Math.max(0, cantidad);
+  const costoGema = 16;
 
-  const siguienteLevel = () => {
-    const resultado = levels.find((l) => l.level === levelActual);
+  //Calcular cuantos libros se requieren para X level
+  const nivelData = levels.find((l) => l.level === levelActual);
+  const librosRequeridos = nivelData?.value ?? 0;
 
-    if (levelActual <= 30 && levelActual > 0) {
-      return resultado.value;
-    } else {
-      return 0;
-    }
-  };
+  //Calcular cuantos libros se requiere dependiendo de que cantidad tiene almacenada
+  const faltante = librosRequeridos - cantidadValida;
 
-  const siguiente = siguienteLevel();
-
-  const faltante = () => {
-    const resultado = siguiente - cantidad;
-    if (resultado > 0) {
-      return resultado;
-    } else {
-      return 0;
-    }
-  };
-
-  const resta = faltante();
+  //Calcular el costo de gemas
+  const calcularCostoGemas = faltante * costoGema;
 
   return (
-    <div className="flex flex-col mx-auto gap-2 p-6 md:w-2xl bg-green-950 rounded-md shadow-lg">
-      <h2 className="text-center mb-4 text-xl font-bold text-green-200">
+    <div className="flex flex-col mx-auto gap-2 p-6 md:w-2xl bg-cyan-700 rounded-md shadow-lg">
+      <h2 className="text-center mb-4 text-xl font-bold text-cyan-200">
         CALCULADORA CUARTEL DE BESTIAS (Por nivel)
       </h2>
 
@@ -40,10 +29,10 @@ export const Individual = ({ levels }) => {
         placeholder="Nivel del 1 al 30"
         className={
           levelActual > 30 || levelActual < 0
-            ? `bg-red-50 text-black font-medium p-2 rounded border-2 focus:border-red-700 focus:outline focus:outline-red-700 `
+            ? `bg-cyan-950/40 text-white font-medium p-4 rounded-xl border-2 border-red-700 focus:border-red-700 focus:outline focus:outline-red-700 `
             : levelActual
-              ? `bg-white text-black p-2 rounded  border-2 focus:border-green-700 focus:outline focus:outline-green-700`
-              : `bg-white text-black p-2 rounded border-2 focus:border-white focus:outline focus:outline-white `
+              ? `bg-cyan-950/40 text-white font-medium p-4 rounded-xl border-2 border-cyan-700 focus:border-cyan-500 focus:outline focus:outline-cyan-500`
+              : `bg-cyan-950/40 text-white font-medium p-4 rounded-xl border-2 border-cyan-700 focus:border-cyan-500 focus:outline focus:outline-cyan-500`
         }
       />
       {(levelActual > 30 || levelActual < 0) && (
@@ -58,21 +47,29 @@ export const Individual = ({ levels }) => {
         placeholder="Ej: 1500"
         onChange={(e) => setCantidad(Number(e.target.value))}
         className={
-          cantidad
-            ? `bg-white text-black p-2 rounded  border-2 focus:border-green-700 focus:outline focus:outline-green-700`
-            : `bg-white text-black p-2 rounded border-2 focus:border-white focus:outline focus:outline-white `
+          cantidadValida
+            ? `bg-cyan-950/40 text-white font-medium p-4 rounded-xl border-2 border-cyan-700 focus:border-cyan-500 focus:outline focus:outline-cyan-500`
+            : `bg-cyan-950/40 text-white font-medium p-4 rounded-xl border-2 border-cyan-700 focus:border-cyan-500 focus:outline focus:outline-cyan-500`
         }
       />
 
-      <div className="bg-green-900 p-4 rounded-lg mt-2">
-        <p className="text-lg">
-          Libros requeridos lvl ({levelActual}):
-          <span className="text-yellow-400 font-bold ml-2">{siguiente < 0 ? 0 : siguiente}</span>
+      <div className="bg-cyan-900 p-4 rounded-lg mt-2">
+        <p className="text-lg font-medium">
+          Libros requeridos (lvl {levelActual}):
+          <span className="text-yellow-400 font-bold ml-2">
+            {librosRequeridos.toLocaleString()}
+          </span>
         </p>
-        <p className="text-lg">
+        <p className="text-lg font-medium">
           Libros faltantes para subir nivel:
           <span className="text-yellow-400 font-bold ml-2">
-            {resta < 0 ? 0 : resta}
+            {faltante.toLocaleString()}
+          </span>
+        </p>
+        <p className="text-lg font-medium">
+          Costo total en gemas:
+          <span className="text-yellow-400 font-bold ml-2">
+            {calcularCostoGemas.toLocaleString()}
           </span>
         </p>
       </div>

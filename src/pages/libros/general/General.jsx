@@ -3,51 +3,28 @@ import { useState } from "react";
 export const General = ({ levels }) => {
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
+  const costoGema = 16;
 
-  // Cálculo del total de todos los niveles
-  // const total = levels.reduce((acc, lvl) => acc + lvl.value, 0);
+  const cantidadValida = Math.max(0, cantidad);
 
-  // Lógica para calcular cuánto falta
-  const calcularRestante = () => {
-    const filtroLevel = levels
-      .filter((l) => l.level > levelActual)
-      .reduce((acc, l) => acc + l.value, 0);
+  //Calcular apartir de X nivel a lvl 30
+  const calcularTotal = levels.reduce((acc, l) => {
+    if (l.level > levelActual) return acc + l.value;
+    return acc;
+  }, 0);
 
-    const resultado = filtroLevel - cantidad;
+  // Calculo para saber cuantos libros faltan a partir de X level menos N cantidad de libros almacenados
+  const calcularRestante = calcularTotal - cantidadValida;
 
-    return resultado;
-  };
-
-  //Logica de costo con gemas
-  const calcularGemas = () => {
-    const costoGema = 16;
-    const filtroLevel = levels
-      .filter((l) => l.level > levelActual)
-      .reduce((acc, l) => acc + l.value, 0);
-
-    const resultado = (filtroLevel - cantidad) * costoGema;
-
-    return resultado;
-  };
+  //Calculo de costo en gemas
+  const calcularGemas = calcularRestante * costoGema;
 
   //Mostrar cuantos libros requiere el siguiente nivel a partir del actual
-  const siguienteLevel = () => {
-    const siguiente = levelActual + 1;
-    const resultado = levels.find((l) => l.level === siguiente);
-
-    if (levelActual <= 29 && levelActual > 0) {
-      return resultado.value;
-    } else {
-      return 0;
-    }
-  };
-
-  const meFalta = calcularRestante();
-  const gemas = calcularGemas();
-  const siguiente = siguienteLevel();
+  const nivelData = levels.find((l) => l.level === levelActual + 1);
+  const LibrosRequeridos = nivelData?.value ?? 0;
 
   return (
-    <div className="flex flex-col mx-auto gap-2 p-6 md:w-2xl bg-purple-950 rounded-md shadow-lg">
+    <div className="flex flex-col mx-auto gap-2 p-6 md:w-2xl bg-purple-800 rounded-md shadow-lg">
       <h2 className="text-center mb-4 text-xl font-bold text-purple-200">
         CALCULADORA CUARTEL DE BESTIAS (general)
       </h2>
@@ -59,10 +36,8 @@ export const General = ({ levels }) => {
         placeholder="Nivel del 1 al 30"
         className={
           levelActual > 30 || levelActual < 0
-            ? `bg-red-50 text-black font-medium p-2 rounded border-2 focus:border-red-700 focus:outline focus:outline-red-700 `
-            : levelActual
-              ? `bg-white text-black p-2 rounded  border-2 focus:border-green-700 focus:outline focus:outline-green-700`
-              : `bg-white text-black p-2 rounded border-2 focus:border-white focus:outline focus:outline-white `
+            ? `bg-purple-950/50 text-white font-medium p-4 rounded-xl border-2 border-red-700 focus:border-red-700 focus:outline focus:outline-red-700`
+            : `bg-purple-950/50 text-white font-medium  p-4 rounded-xl border-2 border-purple-800 focus:border-purple-400 focus:outline focus:outline-purple-400`
         }
       />
       {(levelActual > 30 || levelActual < 0) && (
@@ -76,31 +51,27 @@ export const General = ({ levels }) => {
         type="number"
         placeholder="Ej: 1500"
         onChange={(e) => setCantidad(Number(e.target.value))}
-        className={
-          cantidad
-            ? `bg-white text-black p-2 rounded  border-2 focus:border-green-700 focus:outline focus:outline-green-700`
-            : `bg-white text-black p-2 rounded border-2 focus:border-white focus:outline focus:outline-white `
-        }
+        className={`bg-purple-950/50 text-white font-medium p-4 rounded-xl border-2 border-purple-800 focus:border-purple-400 focus:outline focus:outline-purple-400 `}
       />
 
-      <div className="bg-purple-900 p-4 rounded-lg mt-2">
-        <p className="text-lg">
-          Libros requeridos para lvl 30:
+      <div className="bg-purple-900 p-4 rounded-lg mt-2 ">
+        <p className="text-lg font-medium">
+          Libros requeridos lvl 30:
           <span className="text-yellow-400 font-bold ml-2">
-            {meFalta < 0 ? 0 : meFalta.toLocaleString()}
+            {calcularRestante.toLocaleString()}
           </span>
         </p>
-        <p className="text-lg">
-          Libros para el siguiente nivel:
-          <span className="text-yellow-400 font-bold ml-2">
-            {siguiente < 0 ? 0 : siguiente.toLocaleString()}
+        <p className="text-lg font-medium">
+          Costo para el siguiente nivel:
+          <span className="text-yellow-400 font-bold ml-2 ">
+            {LibrosRequeridos.toLocaleString()}
           </span>
         </p>
 
-        <p className="text-lg">
+        <p className="text-lg font-medium">
           Costo total en gemas:
-          <span className="text-yellow-400 font-bold ml-2">
-            {gemas < 0 ? 0 : gemas.toLocaleString()}
+          <span className="text-yellow-400 font-bold ml-2 ">
+            {calcularGemas.toLocaleString()}
           </span>
         </p>
       </div>
