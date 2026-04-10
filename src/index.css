@@ -1,1 +1,98 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply min-h-screen text-zinc-100;
+    background-color: #08080c;
+    background-image:
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(139, 92, 246, 0.14), transparent 55%),
+      radial-gradient(ellipse 80% 50% at 100% 50%, rgba(249, 115, 22, 0.06), transparent 50%),
+      linear-gradient(180deg, #08080c 0%, #0c0c12 45%, #08080c 100%);
+  }
+}
+
+@layer components {
+  .calc-card {
+    @apply mx-auto flex w-full max-w-2xl flex-col gap-3 rounded-xl border border-zinc-700/70 bg-zinc-900/85 p-6 shadow-xl shadow-black/35 backdrop-blur-sm xl:min-w-0 xl:max-w-2xl xl:flex-1 xl:basis-0;
+  }
+
+  .calc-card--general {
+    @apply ring-1 ring-violet-500/15;
+  }
+
+  .calc-card--individual {
+    @apply ring-1 ring-orange-500/15;
+  }
+
+  .calc-card-title {
+    @apply border-b border-zinc-700/60 pb-3 text-center text-lg font-bold tracking-tight text-zinc-100;
+  }
+
+  .calc-card-title--general {
+    @apply text-violet-200;
+  }
+
+  .calc-card-title--individual {
+    @apply text-orange-200;
+  }
+
+  .calc-label {
+    @apply text-sm font-medium text-zinc-400;
+  }
+
+  .calc-input {
+    @apply w-full rounded-lg border border-zinc-600/90 bg-zinc-950/90 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 outline-none transition-[border-color,box-shadow] focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20;
+  }
+
+  .calc-input--error {
+    @apply border-red-600 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  .calc-results {
+    @apply mt-1 space-y-2 rounded-lg border border-zinc-700/50 bg-zinc-950/60 p-4;
+  }
+
+  .calc-stat-row {
+    @apply flex flex-wrap items-baseline justify-between gap-2 text-sm text-zinc-300;
+  }
+
+  .calc-stat-value {
+    @apply font-bold tabular-nums text-amber-400;
+  }
+
+  .calc-alert {
+    @apply rounded-lg border border-red-900/60 bg-red-950/50 px-3 py-2.5 text-sm font-medium text-red-300;
+  }
+
+  .page-surface {
+    @apply rounded-2xl border border-zinc-800/90 bg-zinc-900/40 p-6 shadow-2xl shadow-black/40 backdrop-blur-sm md:p-8;
+  }
+
+  .stat-pill {
+    @apply rounded-xl border border-zinc-700/70 bg-zinc-800/60 px-5 py-4;
+  }
+
+  .stat-pill-label {
+    @apply text-[11px] font-semibold uppercase tracking-wider text-zinc-500;
+  }
+
+  .stat-pill-value {
+    @apply mt-1 text-2xl font-bold tabular-nums text-orange-400;
+  }
+
+  .stat-pill-unit {
+    @apply mt-0.5 text-sm text-zinc-400;
+  }
+
+  .help-accordion > summary {
+    list-style: none;
+  }
+
+  .help-accordion > summary::-webkit-details-marker {
+    display: none;
+  }
+}

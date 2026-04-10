@@ -1,4 +1,5 @@
-import insignia from "../../assets/herramientas.webp";
+import { CalculatorHelpNote } from "../../components/CalculatorHelpNote";
+import herramientasImg from "../../assets/herramientas.webp";
 import { Individual } from "./individual/Individual";
 import { General } from "./general/General";
 
@@ -38,23 +39,23 @@ export const CalculadoraHerramientas = () => {
   const total = herramientas.reduce((acc, lvl) => acc + lvl.value, 0);
 
   return (
-    <div className="flex flex-col items-center gap-10">
-      <div className="flex flex-col items-center">
+    <div className="page-surface flex flex-col gap-10">
+      <CalculatorHelpNote variant="herramientas" />
+
+      <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10">
         <img
-          src={insignia}
-          alt="imagen de libro"
-          className="w-30 md:w-40 xl:w-60"
+          src={herramientasImg}
+          alt=""
+          className="h-auto w-28 drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] md:w-44"
         />
-        <p className="font-medium -mt-2 lg:-mt-3 text-lg">
-          Total:
-          <span className="ml-1 mr-1 text-cyan-400 font-black">
-            {total.toLocaleString()}
-          </span>
-          libros
-        </p>
+        <div className="stat-pill w-full max-w-sm text-center md:text-left">
+          <p className="stat-pill-label">Total acumulado (nivel 1 → 30)</p>
+          <p className="stat-pill-value">{total.toLocaleString()}</p>
+          <p className="stat-pill-unit">herramientas</p>
+        </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-8 justify-center items-center">
+      <div className="flex flex-col items-stretch justify-center gap-8 xl:flex-row xl:items-start">
         <General herramientas={herramientas} />
         <Individual herramientas={herramientas} />
       </div>

@@ -6,21 +6,28 @@ export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { path: "/libros", label: "Calculadora libros" },
-    { path: "/insignias", label: "Calculadora insignias" },
-    { path: "/herramientas", label: "Calculadora herramientas" },
+    { path: "/libros", label: "Libros" },
+    { path: "/insignias", label: "Insignias" },
+    { path: "/herramientas", label: "Herramientas" },
   ];
 
+  const linkClass = (active) =>
+    active
+      ? "border-violet-500 text-violet-300"
+      : "border-transparent text-zinc-400 hover:border-zinc-600 hover:text-zinc-200";
+
   return (
-    <nav className="relative">
-      {/* Hamburger button */}
+    <nav className="relative py-1">
       <div className="md:hidden">
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-cyan-900 p-3 rounded-lg font-medium text-cyan-100 hover:text-cyan-400 transition-colors"
+          className="flex w-full items-center justify-between rounded-lg border border-zinc-700 bg-zinc-900/90 px-4 py-3 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600"
+          aria-expanded={isOpen}
         >
+          <span>Menú</span>
           <svg
-            className="w-6 h-6"
+            className="h-5 w-5 text-zinc-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,42 +51,40 @@ export const NavBar = () => {
         </button>
       </div>
 
-      {/* Desktop navigation */}
-      <div className="hidden md:flex gap-4 justify-center">
-        {navItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`p-3 rounded-lg font-medium transition-colors ${
-              location.pathname === item.path
-                ? "bg-cyan-700 text-cyan-200 "
-                : "bg-cyan-900 text-cyan-100 hover:text-cyan-400"
-            }`}
-          >
-            {item.label}
-          </Link>
-        ))}
+      <div className="hidden md:flex md:flex-wrap md:gap-1">
+        {navItems.map((item) => {
+          const active = location.pathname === item.path;
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`border-b-2 px-4 py-3 text-sm font-medium transition-colors ${linkClass(active)}`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </div>
 
-      {/* Mobile navigation */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-cyan-900/95 backdrop-blur-sm rounded-lg mt-2 p-4 shadow-lg border border-cyan-700/50">
-          <div className="flex flex-col gap-2">
-            {navItems.map((item) => (
+        <div className="absolute left-0 right-0 top-full z-40 mt-2 rounded-xl border border-zinc-700/80 bg-zinc-950/95 p-2 shadow-2xl shadow-black/50 backdrop-blur-md md:hidden">
+          {navItems.map((item) => {
+            const active = location.pathname === item.path;
+            return (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`p-3 rounded-lg font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? "bg-cyan-700 text-cyan-200 border-2 border-cyan-500"
-                    : "bg-cyan-800 text-cyan-100 hover:text-cyan-400"
+                className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                  active
+                    ? "bg-violet-950/60 text-violet-200"
+                    : "text-zinc-300 hover:bg-zinc-800/80"
                 }`}
               >
                 {item.label}
               </Link>
-            ))}
-          </div>
+            );
+          })}
         </div>
       )}
     </nav>
