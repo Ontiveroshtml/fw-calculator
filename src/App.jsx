@@ -37,8 +37,9 @@ function AppHeader() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-violet-400/90">
             {t("header.kicker")}
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-            {t("header.titleFw")}{" "}
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            <span className="text-violet-400">{t("header.brandVel")}</span>
+            <span className="text-white">{t("header.brandWiki")}</span>{" "}
             <span className="font-semibold text-zinc-500">—</span>{" "}
             <span className="text-orange-400">{t("header.titleResources")}</span>
           </h1>

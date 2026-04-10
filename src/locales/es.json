@@ -1,7 +1,8 @@
 {
   "header": {
     "kicker": "Calculadora",
-    "titleFw": "velwiki",
+    "brandVel": "Vel",
+    "brandWiki": "wiki",
     "titleResources": "recursos",
     "beta": "BETA"
   },
@@ -24,7 +25,7 @@
     "enUs": "Inglés (Estados Unidos)"
   },
   "meta": {
-    "title": "velwiki — calculadora de recursos"
+    "title": "VELwiki — calculadora de recursos"
   },
   "pages": {
     "libros": {
