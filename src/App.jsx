@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CalculadoraBestias } from "./pages/libros/CalculadoraBestias";
+import { CalculadoraInsignia } from "./pages/insignias/CalculadoraInsignias";
+import { CalculadoraHerramientas } from "./pages/herramientas/CalculadoraHerramientas";
 import { NavBar } from "./components/navbar/NavBar";
 
 function App() {
@@ -12,8 +14,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Navigate to="/libros" replace />} />
-
           <Route path="/libros" element={<CalculadoraBestias />} />
+          <Route path="/insignias" element={<CalculadoraInsignia />} />
+          <Route path="/herramientas" element={<CalculadoraHerramientas />} />
         </Routes>
       </BrowserRouter>
     </main>

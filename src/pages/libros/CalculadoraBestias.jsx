@@ -45,12 +45,12 @@ export const CalculadoraBestias = () => {
         <img
           src={libro}
           alt="imagen de libro"
-          className="w-30 lg:w-40 xl:w-50"
+          className="w-30 lg:w-40 xl:w-40"
         />
-        <p className="font-medium -mt-2 lg:-mt-9 text-lg">
-          Total:{" "}
-          <span className="text-cyan-400 font-black">
-            {total.toLocaleString()}{" "}
+        <p className="font-medium -mt-2 lg:-mt-3 text-lg">
+          Total:
+          <span className="ml-1 mr-1 text-cyan-400 font-black">
+            {total.toLocaleString()}
           </span>
           libros
         </p>

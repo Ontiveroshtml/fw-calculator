@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-export const General = ({ levels }) => {
+export const General = ({ insignias }) => {
   const [levelActual, setLevelActual] = useState(0);
   const [cantidad, setCantidad] = useState(0);
-  const costoGema = 16;
+  const costoGema = 10;
 
   const cantidadValida = Math.max(0, cantidad);
 
   //Calcular apartir de X nivel a lvl 30
-  const calcularTotal = levels.reduce((acc, l) => {
+  const calcularTotal = insignias.reduce((acc, l) => {
     if (l.level > levelActual) return acc + l.value;
     return acc;
   }, 0);
@@ -20,13 +20,13 @@ export const General = ({ levels }) => {
   const calcularGemas = calcularRestante * costoGema;
 
   //Mostrar cuantos libros requiere el siguiente nivel a partir del actual
-  const nivelData = levels.find((l) => l.level === levelActual + 1);
-  const LibrosRequeridos = nivelData?.value ?? 0;
+  const nivelData = insignias.find((l) => l.level === levelActual + 1);
+  const insigniasRequeridas = nivelData?.value ?? 0;
 
   return (
     <div className="flex flex-col mx-auto gap-2 p-6 md:w-2xl bg-purple-800 rounded-md shadow-lg">
       <h2 className="text-center mb-4 text-xl font-bold text-purple-200">
-        CALCULADORA CUARTEL DE BESTIAS (General)
+        CALCULADORA DE INSIGNIAS (General)
       </h2>
 
       <p className="mb-1 text-lg font-medium">Nivel actual del cuartel:</p>
@@ -58,20 +58,20 @@ export const General = ({ levels }) => {
         <p className="text-lg font-medium">
           Libros requeridos lvl 30:
           <span className="text-yellow-400 font-bold ml-2">
-            {calcularRestante.toLocaleString()}
+            {calcularRestante < 0 ? 0 : calcularRestante.toLocaleString()}
           </span>
         </p>
         <p className="text-lg font-medium">
           Costo para el siguiente nivel:
           <span className="text-yellow-400 font-bold ml-2 ">
-            {LibrosRequeridos.toLocaleString()}
+            {insigniasRequeridas < 0 ? 0 : insigniasRequeridas.toLocaleString()}
           </span>
         </p>
 
         <p className="text-lg font-medium">
           Costo total en gemas:
           <span className="text-yellow-400 font-bold ml-2 ">
-            {calcularGemas.toLocaleString()}
+            {calcularGemas < 0 ? 0 : calcularGemas.toLocaleString()}
           </span>
         </p>
       </div>
