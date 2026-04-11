@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Analytics } from "@vercel/analytics/react";
 import { CalculadoraBestias } from "./pages/libros/CalculadoraBestias";
 import { CalculadoraInsignia } from "./pages/insignias/CalculadoraInsignias";
 import { CalculadoraHerramientas } from "./pages/herramientas/CalculadoraHerramientas";
@@ -74,6 +75,7 @@ function App() {
             <Route path="/herramientas" element={<CalculadoraHerramientas />} />
           </Routes>
         </main>
+        <Analytics />
       </div>
     </BrowserRouter>
   );
