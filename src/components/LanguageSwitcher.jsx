@@ -1,11 +1,24 @@
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 import mexicoFlag from "../assets/flag-for-flag-mexico-svgrepo-com.svg";
 import usaFlag from "../assets/usa-svgrepo-com.svg";
+import { getRouteIdFromPathname, pathFor } from "../routes";
 
 export function LanguageSwitcher() {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const resolved = (i18n.resolvedLanguage || i18n.language || "en").toLowerCase();
   const isEs = resolved.startsWith("es");
+
+  const switchLanguage = (lng) => {
+    const routeId = getRouteIdFromPathname(location.pathname);
+    void i18n.changeLanguage(lng).then(() => {
+      if (routeId) {
+        navigate(pathFor(routeId, lng), { replace: true });
+      }
+    });
+  };
 
   const btn =
     "flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500";
@@ -24,7 +37,7 @@ export function LanguageSwitcher() {
         title={t("language.esMx")}
         aria-label={t("language.esMx")}
         aria-pressed={isEs}
-        onClick={() => void i18n.changeLanguage("es")}
+        onClick={() => switchLanguage("es")}
         className={`${btn} ${
           isEs
             ? "bg-violet-600/90 text-white"
@@ -47,7 +60,7 @@ export function LanguageSwitcher() {
         title={t("language.enUs")}
         aria-label={t("language.enUs")}
         aria-pressed={!isEs}
-        onClick={() => void i18n.changeLanguage("en")}
+        onClick={() => switchLanguage("en")}
         className={`${btn} ${
           !isEs
             ? "bg-violet-600/90 text-white"

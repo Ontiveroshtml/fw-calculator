@@ -4,19 +4,27 @@
     "brandVel": "Vel",
     "brandWiki": "wiki",
     "titleResources": "resources",
+    "titleMementos": "heroes",
     "beta": "BETA"
   },
   "subtitles": {
     "libros": "Beast barracks: books to level 30 and gem cost.",
     "insignias": "Badges: total materials and gems per level.",
     "herramientas": "Toolbox: same calculations as badges.",
+    "mementos": "Heroes: Mementos to unlock and upgrade skills.",
     "default": "Fate War helper tools (beta)."
+  },
+  "mainNav": {
+    "kicker": "Mode",
+    "resources": "Resource calculator",
+    "mementos": "Heroes calculator"
   },
   "nav": {
     "menu": "Menu",
     "libros": "Books",
     "insignias": "Badges",
-    "herramientas": "Toolbox"
+    "herramientas": "Toolbox",
+    "mementos": "Mementos"
   },
   "language": {
     "label": "Language",
@@ -25,7 +33,8 @@
     "enUs": "English (United States)"
   },
   "meta": {
-    "title": "VELwiki — resource calculator"
+    "title": "VELwiki — resource calculator",
+    "titleMementos": "VELwiki — heroes calculator"
   },
   "pages": {
     "libros": {
@@ -39,6 +48,30 @@
     "herramientas": {
       "totalLabel": "Total needed (level 1 → 30)",
       "totalUnit": "toolbox"
+    },
+    "mementos": {
+      "totalLabel": "Mementos (hero unlock + max skills)",
+      "totalUnit": "mementos"
+    }
+  },
+  "mementos": {
+    "summary": {
+      "kicker": "Summary",
+      "title": "Hero mementos",
+      "hint": "Includes 10 mementos to unlock the hero. Check this if you already unlocked them so the remainder is correct.",
+      "heroUnlocked": "Hero already unlocked (10 mementos paid)",
+      "total": "Total required (max)",
+      "remaining": "Total remaining"
+    },
+    "skill": {
+      "title": "Skill {{n}}",
+      "subtitle": "Levels 1–5 (upgrades to 2/5 … 5/5)",
+      "done": "Complete",
+      "progress": "In progress",
+      "levelLabel": "Progress",
+      "selectLevel": "Current level",
+      "optionLevel": "{{level}} / {{max}}",
+      "remainingLine": "Mementos remaining (this skill)"
     }
   },
   "common": {

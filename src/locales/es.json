@@ -4,19 +4,27 @@
     "brandVel": "Vel",
     "brandWiki": "wiki",
     "titleResources": "recursos",
+    "titleMementos": "héroes",
     "beta": "BETA"
   },
   "subtitles": {
     "libros": "Cuartel de bestias: libros hasta nivel 30 y coste en gemas.",
     "insignias": "Insignias: materiales acumulados y gemas por nivel.",
     "herramientas": "Herramientas de equipo: mismos cálculos que insignias.",
+    "mementos": "Héroes: Mementos para desbloquear y subir habilidades.",
     "default": "Herramientas para Fate War (beta)."
+  },
+  "mainNav": {
+    "kicker": "Modo",
+    "resources": "Calculadora recursos",
+    "mementos": "Calculadora héroes"
   },
   "nav": {
     "menu": "Menú",
     "libros": "Libros",
     "insignias": "Insignias",
-    "herramientas": "Herramientas"
+    "herramientas": "Herramientas",
+    "mementos": "Recuerdos"
   },
   "language": {
     "label": "Idioma",
@@ -25,7 +33,8 @@
     "enUs": "Inglés (Estados Unidos)"
   },
   "meta": {
-    "title": "VELwiki — calculadora de recursos"
+    "title": "VELwiki — calculadora de recursos",
+    "titleMementos": "VELwiki — calculadora de héroes"
   },
   "pages": {
     "libros": {
@@ -39,6 +48,30 @@
     "herramientas": {
       "totalLabel": "Total acumulado (nivel 1 → 30)",
       "totalUnit": "herramientas"
+    },
+    "mementos": {
+      "totalLabel": "Recuerdos (héroe + habilidades al máximo)",
+      "totalUnit": "recuerdos"
+    }
+  },
+  "mementos": {
+    "summary": {
+      "kicker": "Resumen",
+      "title": "Recuerdos del héroe",
+      "hint": "Incluye 10 recuerdos de desbloqueo. Marca si ya desbloqueaste al héroe para ajustar el pendiente.",
+      "heroUnlocked": "Héroe ya desbloqueado (10 recuerdos pagados)",
+      "total": "Total requerido (máximo)",
+      "remaining": "Total restante"
+    },
+    "skill": {
+      "title": "Habilidad {{n}}",
+      "subtitle": "Niveles 1–5 (mejoras 2/5 … 5/5)",
+      "done": "Completa",
+      "progress": "En progreso",
+      "levelLabel": "Progreso",
+      "selectLevel": "Nivel actual",
+      "optionLevel": "{{level}} / {{max}}",
+      "remainingLine": "Recuerdos restantes (esta habilidad)"
     }
   },
   "common": {

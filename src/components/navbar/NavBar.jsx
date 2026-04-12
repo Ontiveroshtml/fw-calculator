@@ -1,17 +1,28 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { isHeroePath, pathFor } from "../../routes";
 
 export const NavBar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lng = i18n.resolvedLanguage || i18n.language;
 
-  const navItems = [
-    { path: "/libros", labelKey: "nav.libros" },
-    { path: "/insignias", labelKey: "nav.insignias" },
-    { path: "/herramientas", labelKey: "nav.herramientas" },
+  const resourceItems = [
+    { routeId: "libros", labelKey: "nav.libros" },
+    { routeId: "insignias", labelKey: "nav.insignias" },
+    { routeId: "herramientas", labelKey: "nav.herramientas" },
   ];
+
+  const mementoItems = [{ routeId: "mementos", labelKey: "nav.mementos" }];
+
+  const navItems = (isHeroePath(location.pathname) ? mementoItems : resourceItems).map(
+    (item) => ({
+      path: pathFor(item.routeId, lng),
+      labelKey: item.labelKey,
+    }),
+  );
 
   const linkClass = (active) =>
     active
