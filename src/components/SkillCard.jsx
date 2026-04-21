@@ -22,10 +22,6 @@ export function SkillCard({
 
   const headerAccent = isComplete ? "text-emerald-300" : "text-violet-300";
 
-  const steps = maxLevel - minLevel;
-  const filled = Math.max(0, level - minLevel);
-  const progressPct = steps > 0 ? (filled / steps) * 100 : 100;
-
   return (
     <article
       className={`flex flex-col rounded-2xl border bg-zinc-900/70 p-5 shadow-lg shadow-black/25 ring-1 backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 ${borderClass}`}
@@ -48,25 +44,6 @@ export function SkillCard({
         >
           {isComplete ? t("mementos.skill.done") : t("mementos.skill.progress")}
         </span>
-      </div>
-
-      <div className="mt-4">
-        <div className="mb-1.5 flex items-center justify-between text-xs text-zinc-500">
-          <span>{t("mementos.skill.levelLabel")}</span>
-          <span className="font-semibold tabular-nums text-zinc-300">
-            {level}/{maxLevel}
-          </span>
-        </div>
-        <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
-          <div
-            className={`h-full rounded-full transition-all duration-500 ease-out ${
-              isComplete
-                ? "bg-gradient-to-r from-emerald-500 to-teal-400"
-                : "bg-gradient-to-r from-violet-600 to-fuchsia-500"
-            }`}
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
       </div>
 
       <div className="mt-4">

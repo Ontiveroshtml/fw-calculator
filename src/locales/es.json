@@ -11,12 +11,14 @@
     "libros": "Cuartel de bestias: libros hasta nivel 30 y coste en gemas.",
     "insignias": "Insignias: materiales acumulados y gemas por nivel.",
     "herramientas": "Herramientas de equipo: mismos cálculos que insignias.",
+    "artefactos": "Artefactos: acero requerido por color y estrellas.",
     "mementos": "Héroes: Mementos para desbloquear y subir habilidades.",
     "default": "Herramientas para Fate War (beta)."
   },
   "mainNav": {
     "kicker": "Modo",
     "resources": "Calculadora recursos",
+    "artifacts": "Calculadora artefactos",
     "mementos": "Calculadora héroes"
   },
   "nav": {
@@ -24,6 +26,7 @@
     "libros": "Libros",
     "insignias": "Insignias",
     "herramientas": "Herramientas",
+    "artefactos": "Artefactos",
     "mementos": "Recuerdos"
   },
   "language": {
@@ -49,9 +52,52 @@
       "totalLabel": "Total acumulado (nivel 1 → 30)",
       "totalUnit": "herramientas"
     },
+    "artifacts": {
+      "totalLabelSingle": "Acero total por artefacto",
+      "totalLabelAll": "Acero total para {{count}} artefactos",
+      "totalUnit": "acero"
+    },
     "mementos": {
       "totalLabel": "Recuerdos (héroe + habilidades al máximo)",
       "totalUnit": "recuerdos"
+    }
+  },
+  "artifacts": {
+    "colors": {
+      "White": "Blanco",
+      "Green": "Verde",
+      "Blue": "Azul",
+      "Purple": "Morado",
+      "Gold": "Dorado",
+      "Red": "Rojo"
+    },
+    "misc": {
+      "base": "Base",
+      "max": "Máximo"
+    },
+    "calculator": {
+      "title": "Calculadora de artefacto",
+      "steelOnly": "(solo acero)",
+      "currentColor": "Color actual",
+      "currentStar": "Nivel de estrellas actual",
+      "noStar": "Sin estrellas",
+      "steelOwned": "Acero disponible",
+      "currentTier": "Rango actual",
+      "reachedTier": "Rango al que llegas",
+      "nextTier": "Siguiente rango",
+      "progressToNext": "Progreso al siguiente rango",
+      "missingToNext": "Faltante al siguiente rango",
+      "remainingToRedFromCurrent": "Acero total requerido desde tu rango hasta rojo",
+      "missingToRed": "Acero que te falta para rojo",
+      "progressToRed": "Progreso a rojo",
+      "extraSteelAfterRed": "Acero sobrante después de llegar a rojo",
+      "secondArtifactReached": "Con el sobrante, otro artefacto llega a",
+      "secondArtifactNext": "Siguiente rango de ese otro artefacto"
+    },
+    "table": {
+      "toggle": "Ver tabla de costos por rango",
+      "tier": "Rango",
+      "steel": "Acero"
     }
   },
   "mementos": {
@@ -150,6 +196,13 @@
       "El total superior es la suma de herramientas necesarias desde el nivel 1 hasta el 30.",
       "Vista general: tu nivel actual y las herramientas guardadas. Calcula lo pendiente hasta el 30, el siguiente escalón y gemas (10 gemas por unidad).",
       "Por nivel: nivel objetivo y herramientas almacenadas. Muestra el coste de ese nivel, faltantes y gemas."
+    ],
+    "artifacts": [
+      "La tabla muestra el acero que se paga en cada rango de artefacto.",
+      "Primero selecciona tu rango actual (color y estrellas) del artefacto.",
+      "Luego escribe el acero disponible para calcular hasta dónde llegas desde ese punto.",
+      "También muestra cuánto falta para llegar a rojo.",
+      "Si te pasas de rojo, el excedente se aplica a otro artefacto y te dice a qué rango llegaría."
     ]
   }
 }

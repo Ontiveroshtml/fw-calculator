@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { CalculadoraBestias } from "./pages/libros/CalculadoraBestias";
 import { CalculadoraInsignia } from "./pages/insignias/CalculadoraInsignias";
 import { CalculadoraHerramientas } from "./pages/herramientas/CalculadoraHerramientas";
+import { CalculadoraArtifacts } from "./pages/artifacts/CalculadoraArtifacts";
 import { CalculadoraMementos } from "./pages/mementos/CalculadoraMementos";
 import { NavBar } from "./components/navbar/NavBar";
 import { AppMainNav } from "./components/navbar/AppMainNav";
@@ -27,6 +28,8 @@ function subtitleKeyForPath(pathname) {
       return "subtitles.insignias";
     case "herramientas":
       return "subtitles.herramientas";
+    case "artefactos":
+      return "subtitles.artefactos";
     case "mementos":
       return "subtitles.mementos";
     default:
@@ -99,6 +102,7 @@ function App() {
             <Route path={PATHS.es.libros} element={<CalculadoraBestias />} />
             <Route path={PATHS.es.insignias} element={<CalculadoraInsignia />} />
             <Route path={PATHS.es.herramientas} element={<CalculadoraHerramientas />} />
+            <Route path={PATHS.es.artefactos} element={<CalculadoraArtifacts />} />
 
             <Route
               path="/resources"
@@ -107,6 +111,7 @@ function App() {
             <Route path={PATHS.en.libros} element={<CalculadoraBestias />} />
             <Route path={PATHS.en.insignias} element={<CalculadoraInsignia />} />
             <Route path={PATHS.en.herramientas} element={<CalculadoraHerramientas />} />
+            <Route path={PATHS.en.artefactos} element={<CalculadoraArtifacts />} />
 
             <Route
               path="/heroe"
@@ -126,6 +131,14 @@ function App() {
             <Route
               path="/herramientas"
               element={<LocalizedRedirect routeId="herramientas" />}
+            />
+            <Route
+              path="/artefactos"
+              element={<LocalizedRedirect routeId="artefactos" />}
+            />
+            <Route
+              path="/artifacts"
+              element={<LocalizedRedirect routeId="artefactos" />}
             />
             <Route path="/mementos" element={<LocalizedRedirect routeId="mementos" />} />
             <Route path="/fragmentos" element={<LocalizedRedirect routeId="mementos" />} />

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { isHeroePath, pathFor } from "../../routes";
+import { isArtifactsPath, isHeroePath, pathFor } from "../../routes";
 
 export const NavBar = () => {
   const location = useLocation();
@@ -16,13 +16,18 @@ export const NavBar = () => {
   ];
 
   const mementoItems = [{ routeId: "mementos", labelKey: "nav.mementos" }];
+  const artifactItems = [{ routeId: "artefactos", labelKey: "nav.artefactos" }];
 
-  const navItems = (isHeroePath(location.pathname) ? mementoItems : resourceItems).map(
-    (item) => ({
-      path: pathFor(item.routeId, lng),
-      labelKey: item.labelKey,
-    }),
-  );
+  const sectionItems = isHeroePath(location.pathname)
+    ? mementoItems
+    : isArtifactsPath(location.pathname)
+      ? artifactItems
+      : resourceItems;
+
+  const navItems = sectionItems.map((item) => ({
+    path: pathFor(item.routeId, lng),
+    labelKey: item.labelKey,
+  }));
 
   const linkClass = (active) =>
     active

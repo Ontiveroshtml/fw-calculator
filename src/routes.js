@@ -1,12 +1,13 @@
 /** Localized URL paths: Spanish vs English segments. */
 
-export const ROUTE_IDS = ["libros", "insignias", "herramientas", "mementos"];
+export const ROUTE_IDS = ["libros", "insignias", "herramientas", "artefactos", "mementos"];
 
 const PATHS = {
   es: {
     libros: "/recursos/libros",
     insignias: "/recursos/insignias",
     herramientas: "/recursos/herramientas",
+    artefactos: "/recursos/artefactos",
     mementos: "/heroe/recuerdos",
     recursosIndex: "/recursos",
     heroeIndex: "/heroe",
@@ -15,6 +16,7 @@ const PATHS = {
     libros: "/resources/books",
     insignias: "/resources/badges",
     herramientas: "/resources/toolbox",
+    artefactos: "/resources/artifacts",
     mementos: "/hero/mementos",
     recursosIndex: "/resources",
     heroeIndex: "/hero",
@@ -57,6 +59,15 @@ export function isRecursosPath(pathname) {
     pathname.startsWith("/recursos/") ||
     pathname === "/resources" ||
     pathname.startsWith("/resources/")
+  );
+}
+
+export function isArtifactsPath(pathname) {
+  return (
+    pathname === PATHS.es.artefactos ||
+    pathname === PATHS.en.artefactos ||
+    pathname === "/artefactos" ||
+    pathname === "/artifacts"
   );
 }
 

@@ -11,12 +11,14 @@
     "libros": "Beast barracks: books to level 30 and gem cost.",
     "insignias": "Badges: total materials and gems per level.",
     "herramientas": "Toolbox: same calculations as badges.",
+    "artefactos": "Artifacts: steel required by color and stars.",
     "mementos": "Heroes: Mementos to unlock and upgrade skills.",
     "default": "Fate War helper tools (beta)."
   },
   "mainNav": {
     "kicker": "Mode",
     "resources": "Resource calculator",
+    "artifacts": "Artifacts calculator",
     "mementos": "Heroes calculator"
   },
   "nav": {
@@ -24,6 +26,7 @@
     "libros": "Books",
     "insignias": "Badges",
     "herramientas": "Toolbox",
+    "artefactos": "Artifacts",
     "mementos": "Mementos"
   },
   "language": {
@@ -49,9 +52,52 @@
       "totalLabel": "Total needed (level 1 → 30)",
       "totalUnit": "toolbox"
     },
+    "artifacts": {
+      "totalLabelSingle": "Total steel per artifact",
+      "totalLabelAll": "Total steel for {{count}} artifacts",
+      "totalUnit": "steel"
+    },
     "mementos": {
       "totalLabel": "Mementos (hero unlock + max skills)",
       "totalUnit": "mementos"
+    }
+  },
+  "artifacts": {
+    "colors": {
+      "White": "White",
+      "Green": "Green",
+      "Blue": "Blue",
+      "Purple": "Purple",
+      "Gold": "Gold",
+      "Red": "Red"
+    },
+    "misc": {
+      "base": "Base",
+      "max": "Max"
+    },
+    "calculator": {
+      "title": "Artifact calculator",
+      "steelOnly": "(steel only)",
+      "currentColor": "Current color",
+      "currentStar": "Current star level",
+      "noStar": "No stars",
+      "steelOwned": "Steel available",
+      "currentTier": "Current tier",
+      "reachedTier": "Tier you can reach",
+      "nextTier": "Next tier",
+      "progressToNext": "Progress to next tier",
+      "missingToNext": "Missing for next tier",
+      "remainingToRedFromCurrent": "Total steel needed from current tier to red",
+      "missingToRed": "Steel still needed to reach red",
+      "progressToRed": "Progress to red",
+      "extraSteelAfterRed": "Extra steel after reaching red",
+      "secondArtifactReached": "With extra steel, another artifact reaches",
+      "secondArtifactNext": "Next tier of that other artifact"
+    },
+    "table": {
+      "toggle": "Show tier cost table",
+      "tier": "Tier",
+      "steel": "Steel"
     }
   },
   "mementos": {
@@ -150,6 +196,13 @@
       "The total at the top is the sum of toolbox materials required from level 1 through 30.",
       "Overview: your current level and materials you’ve stored for the toolbox. It shows what’s left to reach 30, the next step, and gems (10 gems per unit).",
       "Per level: target level and stored toolbox materials. It shows that level’s cost, shortage, and gems."
+    ],
+    "artifacts": [
+      "The table lists steel cost for each artifact tier.",
+      "First choose your current artifact tier (color and stars).",
+      "Then enter your available steel to see how far you can go from that point.",
+      "The calculator also shows steel still needed to reach red.",
+      "If you go past red, extra steel is applied to another artifact and its reached tier is shown."
     ]
   }
 }

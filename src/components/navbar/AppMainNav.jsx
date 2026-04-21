@@ -1,13 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { isHeroePath, isRecursosPath, pathFor } from "../../routes";
+import { isArtifactsPath, isHeroePath, isRecursosPath, pathFor } from "../../routes";
 
 export function AppMainNav() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const lng = i18n.resolvedLanguage || i18n.language;
 
-  const resourceActive = isRecursosPath(location.pathname);
+  const artifactsActive = isArtifactsPath(location.pathname);
+  const resourceActive = isRecursosPath(location.pathname) && !artifactsActive;
   const mementosActive = isHeroePath(location.pathname);
 
   const segmentBase =
@@ -19,6 +20,9 @@ export function AppMainNav() {
 
   const mementosClass = mementosActive
     ? "bg-teal-600/30 text-teal-100 shadow-sm ring-1 ring-teal-500/30"
+    : "text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-200";
+  const artifactsClass = artifactsActive
+    ? "bg-amber-600/30 text-amber-100 shadow-sm ring-1 ring-amber-500/30"
     : "text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-200";
 
   return (
@@ -33,6 +37,9 @@ export function AppMainNav() {
         >
           <Link to={pathFor("libros", lng)} className={`${segmentBase} ${resourceClass}`}>
             {t("mainNav.resources")}
+          </Link>
+          <Link to={pathFor("artefactos", lng)} className={`${segmentBase} ${artifactsClass}`}>
+            {t("mainNav.artifacts")}
           </Link>
           <Link to={pathFor("mementos", lng)} className={`${segmentBase} ${mementosClass}`}>
             {t("mainNav.mementos")}
