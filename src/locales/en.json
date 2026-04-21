@@ -90,8 +90,13 @@
       "remainingToRedFromCurrent": "Total steel needed from current tier to red",
       "missingToRed": "Steel still needed to reach red",
       "progressToRed": "Progress to red",
-      "extraSteelAfterRed": "Extra steel after reaching red",
-      "secondArtifactReached": "With extra steel, another artifact reaches",
+      "extraSteelAfterRed": "Extra after red",
+      "fullExtraArtifacts": "Full extra artifacts (red)",
+      "partialExtraArtifact": "Next artifact ends at",
+      "overflowDetailsToggle": "See overflow details",
+      "overflowStepFull": "Extra artifact {{n}}: Red",
+      "overflowStepPartial": "Extra artifact {{n}}: {{tier}}",
+      "secondArtifactReached": "Another artifact reaches",
       "secondArtifactNext": "Next tier of that other artifact"
     },
     "table": {

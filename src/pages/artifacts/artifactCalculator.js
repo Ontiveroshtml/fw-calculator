@@ -47,6 +47,32 @@ function getTierProgressFromBase(steelOwned) {
   };
 }
 
+function buildOverflowBreakdown(overflowSteel) {
+  const safeOverflow = Math.max(0, Math.floor(Number(overflowSteel) || 0));
+  const fullArtifacts = Math.floor(safeOverflow / ARTIFACT_STEEL_TOTAL);
+  const remainder = safeOverflow % ARTIFACT_STEEL_TOTAL;
+  const partial = getTierProgressFromBase(remainder);
+
+  const steps = [];
+  for (let i = 0; i < fullArtifacts; i++) {
+    steps.push({ type: "full", reachedTier: "Red" });
+  }
+  if (remainder > 0) {
+    steps.push({
+      type: "partial",
+      reachedTier: partial.reachedTier,
+      steelRemaining: partial.steelIntoNextTier,
+    });
+  }
+
+  return {
+    fullArtifacts,
+    partialReachedTier: remainder > 0 ? partial.reachedTier : null,
+    remainderSteel: partial.steelIntoNextTier,
+    steps,
+  };
+}
+
 export function getArtifactSummary(currentTierIndex, steelOwned) {
   const idx = Math.max(0, Math.min(Number(currentTierIndex) || 0, ARTIFACT_STEEL_COSTS.length - 1));
   const safeSteel = Math.max(0, Math.floor(Number(steelOwned) || 0));
@@ -69,7 +95,8 @@ export function getArtifactSummary(currentTierIndex, steelOwned) {
   const steelForNextTier = ARTIFACT_STEEL_COSTS[reachedIndex + 1]?.steel ?? 0;
   const steelIntoNextTier = nextTier === "MAX" ? 0 : steelLeft;
   const overflowAfterRed = Math.max(safeSteel - remainingToRed, 0);
-  const nextArtifact = overflowAfterRed > 0 ? getTierProgressFromBase(overflowAfterRed) : null;
+  const overflowBreakdown =
+    overflowAfterRed > 0 ? buildOverflowBreakdown(overflowAfterRed) : null;
 
   return {
     currentTier,
@@ -81,6 +108,6 @@ export function getArtifactSummary(currentTierIndex, steelOwned) {
     remainingToRed,
     missingToRed: Math.max(remainingToRed - safeSteel, 0),
     overflowAfterRed,
-    nextArtifact,
+    overflowBreakdown,
   };
 }

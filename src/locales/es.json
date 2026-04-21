@@ -90,8 +90,13 @@
       "remainingToRedFromCurrent": "Acero total requerido desde tu rango hasta rojo",
       "missingToRed": "Acero que te falta para rojo",
       "progressToRed": "Progreso a rojo",
-      "extraSteelAfterRed": "Acero sobrante después de llegar a rojo",
-      "secondArtifactReached": "Con el sobrante, otro artefacto llega a",
+      "extraSteelAfterRed": "Sobrante tras rojo",
+      "fullExtraArtifacts": "Artefactos extra completos (rojo)",
+      "partialExtraArtifact": "Siguiente artefacto queda en",
+      "overflowDetailsToggle": "Ver detalle del sobrante",
+      "overflowStepFull": "Artefacto extra {{n}}: Rojo",
+      "overflowStepPartial": "Artefacto extra {{n}}: {{tier}}",
+      "secondArtifactReached": "Otro artefacto llega a",
       "secondArtifactNext": "Siguiente rango de ese otro artefacto"
     },
     "table": {

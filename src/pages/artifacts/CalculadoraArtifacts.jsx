@@ -143,7 +143,7 @@ export function CalculadoraArtifacts() {
               <span className="calc-stat-value">{summary.missingToNextTier.toLocaleString(locale)}</span>
             </p>
           )}
-          {summary.overflowAfterRed > 0 && summary.nextArtifact && (
+          {summary.overflowAfterRed > 0 && summary.overflowBreakdown && (
             <>
               <p className="calc-stat-row">
                 <span>{t("artifacts.calculator.extraSteelAfterRed")}</span>
@@ -152,13 +152,53 @@ export function CalculadoraArtifacts() {
                 </span>
               </p>
               <p className="calc-stat-row">
-                <span>{t("artifacts.calculator.secondArtifactReached")}</span>
-                <span className="calc-stat-value">{localizeTier(summary.nextArtifact.reachedTier)}</span>
+                <span>{t("artifacts.calculator.fullExtraArtifacts")}</span>
+                <span className="calc-stat-value">
+                  {summary.overflowBreakdown.fullArtifacts.toLocaleString(locale)}
+                </span>
               </p>
-              <p className="calc-stat-row">
-                <span>{t("artifacts.calculator.secondArtifactNext")}</span>
-                <span className="calc-stat-value">{localizeTier(summary.nextArtifact.nextTier)}</span>
-              </p>
+              {summary.overflowBreakdown.partialReachedTier && (
+                <p className="calc-stat-row">
+                  <span>{t("artifacts.calculator.partialExtraArtifact")}</span>
+                  <span className="calc-stat-value">
+                    {localizeTier(summary.overflowBreakdown.partialReachedTier)}
+                  </span>
+                </p>
+              )}
+
+              <details className="group mt-2 overflow-hidden rounded-lg border border-zinc-800/80 bg-zinc-900/40">
+                <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900/70">
+                  <svg
+                    className="h-4 w-4 shrink-0 text-zinc-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8h.01M11 12h1v4h1m-1 5a9 9 0 100-18 9 9 0 000 18z"
+                    />
+                  </svg>
+                  <span>{t("artifacts.calculator.overflowDetailsToggle")}</span>
+                </summary>
+                <div className="border-t border-zinc-800/80 px-3 py-2">
+                  <ul className="space-y-1 text-sm text-zinc-300">
+                    {summary.overflowBreakdown.steps.map((step, idx) => (
+                      <li key={`${step.type}-${idx}`}>
+                        {step.type === "full"
+                          ? t("artifacts.calculator.overflowStepFull", { n: idx + 1 })
+                          : t("artifacts.calculator.overflowStepPartial", {
+                              n: idx + 1,
+                              tier: localizeTier(step.reachedTier),
+                            })}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
             </>
           )}
         </div>
