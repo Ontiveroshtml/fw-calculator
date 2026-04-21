@@ -17,7 +17,7 @@ import { NavBar } from "./components/navbar/NavBar";
 import { AppMainNav } from "./components/navbar/AppMainNav";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { LocalizedRedirect } from "./components/LocalizedRedirect";
-import { getRouteIdFromPathname, isHeroePath, PATHS } from "./routes";
+import { getRouteIdFromPathname, isArtifactsPath, isHeroePath, PATHS } from "./routes";
 
 function subtitleKeyForPath(pathname) {
   const id = getRouteIdFromPathname(pathname);
@@ -41,6 +41,7 @@ function AppHeader() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const onHeroe = isHeroePath(location.pathname);
+  const onArtifacts = isArtifactsPath(location.pathname);
 
   useEffect(() => {
     const hero = isHeroePath(location.pathname);
@@ -62,9 +63,15 @@ function AppHeader() {
             <span className="text-white">{t("header.brandWiki")}</span>{" "}
             <span className="font-semibold text-zinc-500">—</span>{" "}
             <span
-              className={onHeroe ? "text-teal-400" : "text-orange-400"}
+              className={
+                onHeroe ? "text-teal-400" : onArtifacts ? "text-amber-400" : "text-orange-400"
+              }
             >
-              {onHeroe ? t("header.titleMementos") : t("header.titleResources")}
+              {onHeroe
+                ? t("header.titleMementos")
+                : onArtifacts
+                  ? t("header.titleArtifacts")
+                  : t("header.titleResources")}
             </span>
           </h1>
           <p className="mt-1 max-w-xl text-sm leading-relaxed text-zinc-400">
