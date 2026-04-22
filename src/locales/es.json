@@ -20,7 +20,9 @@
     "kicker": "Modo",
     "resources": "Calculadora recursos",
     "artifacts": "Calculadora artefactos",
-    "mementos": "Calculadora héroes"
+    "mementos": "Calculadora héroes",
+    "topChieftain": "Líder supremo",
+    "comingSoon": "Próximamente"
   },
   "nav": {
     "menu": "Menú",

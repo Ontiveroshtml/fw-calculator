@@ -20,7 +20,9 @@
     "kicker": "Mode",
     "resources": "Resource calculator",
     "artifacts": "Artifacts calculator",
-    "mementos": "Heroes calculator"
+    "mementos": "Heroes calculator",
+    "topChieftain": "Top Chieftain",
+    "comingSoon": "Coming soon"
   },
   "nav": {
     "menu": "Menu",

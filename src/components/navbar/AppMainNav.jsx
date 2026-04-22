@@ -44,6 +44,16 @@ export function AppMainNav() {
           <Link to={pathFor("mementos", lng)} className={`${segmentBase} ${mementosClass}`}>
             {t("mainNav.mementos")}
           </Link>
+          <span
+            className={`${segmentBase} inline-flex cursor-not-allowed items-center gap-2 text-zinc-600 opacity-70`}
+            aria-disabled="true"
+            title={t("mainNav.comingSoon")}
+          >
+            <span>{t("mainNav.topChieftain")}</span>
+            <span className="rounded-full border border-zinc-700/80 bg-zinc-800/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-zinc-400">
+              {t("mainNav.comingSoon")}
+            </span>
+          </span>
         </nav>
       </div>
     </div>
